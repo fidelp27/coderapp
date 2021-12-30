@@ -1,0 +1,19 @@
+.cart-container{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: black;
+    
+}
+
+.cart-img{
+    width: 35px;
+    height: 35px;
+    padding: 1rem;
+    
+}
+.cart-img:hover{
+    width: 45px;
+    height: 45px;
+    cursor: pointer;
+}
