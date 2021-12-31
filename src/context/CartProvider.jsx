@@ -1,6 +1,6 @@
 import React, {createContext, useContext, useState} from "react";
 import { useEffect } from "react/cjs/react.development";
-import { products } from "../components/Items/productos";
+import {getFirestore, addDoc, getDocs, collection} from "firebase/firestore"
 
 export const CartContext = createContext()
 
@@ -8,13 +8,23 @@ const CartProvider =({children})=>{
     const[productos, setProductos] = useState([])
     const[cartOpen, setCartOpen]=useState(false)
     const[cartItem, setCartItem]=useState([])
+    const db = getFirestore()
+    const ref = collection(db, "products")
+    const refCart = collection(db, "cartItems")
 
+    useEffect(()=>{       
+        getDocs(ref)
+        .then((snapShot)=>{
+            setProductos(snapShot.docs.map((doc)=>({id: doc.id, ...doc.data()})))
+        })
+    }, [] )
 
-    
-    useEffect(()=>{    
-        setProductos(products.map((i)=> i))
-    },[]) 
-
+    useEffect(()=>{       
+        getDocs(refCart)
+        .then((snapShot)=>{
+            setCartItem(snapShot.docs.map((doc)=>({id: doc.id, ...doc.data()})))
+        })
+    }, [cartItem] )
     
     const openCart=()=>{
         setCartOpen(!cartOpen)
@@ -27,7 +37,7 @@ const CartProvider =({children})=>{
 
     const addToCart =(product)=>{
         if(isOnCart(product)===-1){
-            setCartItem([...cartItem, product])    
+            addDoc(refCart, product)
         }else{
             alert("ya tienes el producto agregado")
         }       
@@ -58,5 +68,6 @@ export function useCartItem(){
 export function useDeleteItemCart(){
     return useContext(CartContext).deleteItemCart
 }
+
 
 export default CartProvider

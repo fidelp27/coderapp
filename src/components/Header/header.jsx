@@ -10,6 +10,7 @@ const Header =()=>{
     const cartItem = useCartItem()
     const deleteItemCart = useDeleteItemCart()
 
+
     return(
     <div className="nav-bar">
         <Logo />
@@ -22,13 +23,12 @@ const Header =()=>{
               {
                 cartItem?.map((item)=>{
                   return(
-                    <div className="modal-cart-container">
+                    <div className="modal-cart-container" key={item.id}>
                       <div className="modal-cart-items">
                         <img src={item.img} alt={item.name} />
                         <p className="modal-name">{item.name} </p>
                         <p className="modal-name">${item.price} </p>
                         <img src="https://i.imgur.com/llsKyYw.png"  className="button-garbage" alt="garbage" onClick={()=> deleteItemCart(item)} />
-
                       </div>
                     </div>
                     
