@@ -13,21 +13,21 @@ const AuthProvider =({children})=>{
     const [err, setErr] = useState()
     const [isAuth, setIsAuth] = useState(false)
     const auth = getAuth()
-
+    
 
 
     /* Tomar datos del imput con el atributo name para el registro*/
     const onChangeSignUp =(evt)=>{
         setCreateUser({
             ...createUser, [evt.target.name]: evt.target.value
+          
         })
     }
-
     /* Ingresar con el usuario y contraseña y validar que no estén vacíos los campos para el registro */
     const onSubmitSignUp = (evt)=>{
         evt.preventDefault()
-        if(createUser.email !== "" && createUser.password !== ""){
-            
+        if(createUser.email !== "" && createUser.password !== "" && createUser.name !== ""){  
+                                                        
             createUserWithEmailAndPassword(auth, createUser?.email, createUser?.password) 
             .then(()=> alert("Usuario Creado"))
             .catch((err)=> setErr(err.message))
@@ -59,8 +59,6 @@ const AuthProvider =({children})=>{
         if(user){
             setIsAuth(true)
             setUser(user)
-            console.log(user);
-            
         }else{
             setIsAuth(false)
         }

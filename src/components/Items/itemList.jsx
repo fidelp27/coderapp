@@ -6,9 +6,9 @@ const ItemList=({items})=>{
     return(
         <div className="cards-wrap">
             {
-                items.map((item)=>{
+                items.map((item)=>{                    
                     return(
-                        <Item key={item.id} item={item} />
+                        <Item key={item.pid} item={item} />
                     )
                 })
             }

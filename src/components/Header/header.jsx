@@ -17,13 +17,13 @@ const Header =()=>{
         <Menu />
         <Cart />
         {
-          cartOpen  ? 
+          cartOpen && cartItem ? 
          (<div className="modal-container">
             <div className="modal-cart">
               {
                 cartItem?.map((item)=>{
                   return(
-                    <div className="modal-cart-container" key={item.id}>
+                    <div className="modal-cart-container" key={item.pid}>
                       <div className="modal-cart-items">
                         <img src={item.img} alt={item.name} />
                         <p className="modal-name">{item.name} </p>

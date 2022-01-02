@@ -30,3 +30,20 @@
     padding: .5rem;
     background-color: chartreuse;
 }
+.user-box{
+    display: flex;
+    margin-right: 1rem;
+}
+.user-box span{
+    color: whitesmoke;
+    font-weight: bolder;
+}
+.user-box img{
+    margin: 0 1rem;
+    transition: .5s ease-in-out;
+}
+.user-box img:hover{
+    cursor: pointer;
+    box-shadow: inset 1px 1px 1px 1px black;
+    border-radius: 1rem;
+}

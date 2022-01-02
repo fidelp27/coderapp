@@ -11,6 +11,7 @@ const CartProvider =({children})=>{
     const db = getFirestore()
     const ref = collection(db, "products")
     const refCart = collection(db, "cartItems")
+    
 
     useEffect(()=>{       
         getDocs(ref)
@@ -63,12 +64,16 @@ const CartProvider =({children})=>{
     useEffect(()=>{       
         getCartItems()
     }, [] )
-
+    console.log(productos);
     return(
         <CartContext.Provider value={{productos, cartOpen, openCart, addToCart, cartItem, deleteItemCart}}>
             {children}
         </CartContext.Provider>
     )
+}
+
+export function useProductos(){
+    return useContext(CartContext).productos
 }
 export function useCartOpen(){
     return useContext(CartContext).cartOpen

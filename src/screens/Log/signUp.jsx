@@ -20,7 +20,7 @@ const SignIn=()=>{
                 <fieldset className="input-data">
                     <legend>Crear cuenta</legend>           
                      <label htmlFor="name">  Nombre y Apellido:        
-                        <input type="text" id="name" onChange={onChangeSignUp}/>
+                        <input type="text" name="name" id="name" onChange={onChangeSignUp}/>
                     </label>                    
                     <label htmlFor="email">E-mail:
                         <input type="email" name="email" id="email" onChange={onChangeSignUp}/>

@@ -3,24 +3,27 @@ import ItemDetail from "./itemDetail";
 import { products } from "../Items/productos";
 import "./itemDetail.css"
 import { useParams } from "react-router-dom";
+import { useProductos } from "../../context/CartProvider";
 
 const ItemDetailContainer=()=>{
      const[product, setProduct] = useState([])
      const{prodId} = useParams()
      const[loading, setLoading] = useState(true)
      const[goCart, setGoCart] = useState(false)
+     const productos = useProductos()
+
 
      useEffect(()=>{
          setLoading(true)
          const getProduct = new Promise((resolve, reject)=>{
              setTimeout(()=>{
-                 resolve(products)
+                 resolve(productos)
              },2000)
          })
      
      getProduct
      .then((res)=>{
-        prodId ? setProduct(res.find((item)=> item.id === prodId)) :
+        prodId ? setProduct(res.find((item)=> item.pid === prodId)) :
         setProduct(res)
      })
      .finally(()=>{

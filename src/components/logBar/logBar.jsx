@@ -19,9 +19,9 @@ const LogBar=()=>{
             </div>
         {
             isAuth ? 
-                <div>
-                    <span>Bienvenido {user?.email} </span>
-                    <button type="button" onClick={()=> logOut()}> Logout</button> 
+                <div className="user-box">
+                    <span>Hola, {user?.email} </span>
+                    <img src="https://i.imgur.com/1aH4pza.png" alt="logout" onClick={()=> logOut()}/> 
                 </div> 
                 :
                 <div className="btn-log-container">

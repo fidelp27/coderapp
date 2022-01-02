@@ -8,7 +8,7 @@ import Contacto from "./screens/contacto"
 import ShopCart from "./screens/ShopCart";
 import LogBar from "./components/logBar/logBar";
 import LogIn from "./screens/Log/logIn";
-import SignIn from "./screens/Log/signIn"
+import SignIn from "./screens/Log/signUp"
 
 function App() {
   return (
