@@ -1,0 +1,78 @@
+.form-container{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    height: 80vh;
+    background-color: blueviolet;
+}
+.form-container,
+.form-container-data{
+    display: flex;
+    flex-direction: column;
+}
+.form-container form .input-data,
+.form-container-data .input-data{
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    width: 400px;    
+}
+.form-container-data .input-data{
+    width: 900px;
+    padding: .4rem 2rem;
+}
+.input-data legend{
+    text-align: center;
+    font-weight: bold;
+    padding: 0 2rem;
+}
+.form-container .input-data input{
+    width: 380px;
+    height: 30px;
+    border: none;
+    margin: .5rem;
+    padding: 0;
+    text-align: center;
+    border-radius: .5rem;
+}
+.form-container-data .input-button,
+.form-container .input-button{
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    width: 380px;
+    padding: 0;
+    margin: 1rem auto;
+}
+.form-container-data .input-button{
+    width: 400px;
+
+}
+.form-container .input-button button,
+.form-container-data .input-button button{
+    width: 100%;
+    border: none;
+    border-radius: .5rem;
+    padding: .5rem;
+    background-color: gold;
+    color: honeydew;
+    font-weight: bolder;
+}
+.form-container-data .input-button button{
+    width: 380px;
+}
+.input-button button:hover{
+    cursor: pointer;
+    background-color: lawngreen;
+}
+.input-button p{    
+    font-size: .8rem;
+}
+.input-button p a{
+    color: whitesmoke;
+    letter-spacing: 1px;
+}
+.input-button p a:hover{
+    text-decoration: underline;
+}

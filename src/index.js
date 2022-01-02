@@ -3,7 +3,7 @@ import ReactDOM from 'react-dom';
 import './index.css';
 import App from './App';
 import reportWebVitals from './reportWebVitals';
-import CartProvider from "./context/CartProvider"
+import Providers from './components/providers/providers';
 
 // Import the functions you need from the SDKs you need
 import { initializeApp } from "firebase/app";
@@ -30,9 +30,9 @@ initializeApp(firebaseConfig);
 
 ReactDOM.render(
   <React.StrictMode>
-    <CartProvider>
+    <Providers>
       <App />
-    </CartProvider>
+    </Providers>    
   </React.StrictMode>,
   document.getElementById('root')
 );

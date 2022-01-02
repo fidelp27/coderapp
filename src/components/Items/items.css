@@ -13,8 +13,7 @@
     box-shadow: -2px -1px 55px -12px rgba(29,232,61,0.9);
     -webkit-box-shadow: -2px -1px 55px -12px rgba(29,232,61,0.9);
     -moz-box-shadow: -2px -1px 55px -12px rgba(29,232,61,0.9);
-    padding: .05rem;    
-    transition: .3s ease-in;  
+     transition: .3s ease-in;  
   }
   .card-container img{
     width: 190px;
@@ -44,7 +43,6 @@
   }
   a{
     text-decoration: none;
-
   }
 
   .cards-wrap{
@@ -66,8 +64,10 @@
   .icon-cart img{
     width: 24px;
     height: 24px;
+    transition: .2s ease-in;
   }
   .icon-cart img:hover{
-    width: 27px;
-    height: 27px;
+    width: 23px;
+    height: 23px;
+    box-shadow: inset 1px 1px 1px rgba(0, 0 , 0, .4) ;
   }

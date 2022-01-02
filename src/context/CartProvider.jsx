@@ -1,6 +1,6 @@
 import React, {createContext, useContext, useState} from "react";
 import { useEffect } from "react/cjs/react.development";
-import {getFirestore, addDoc, getDocs, collection} from "firebase/firestore"
+import {getFirestore, addDoc, getDocs, collection, doc, updateDoc} from "firebase/firestore"
 
 export const CartContext = createContext()
 
@@ -15,37 +15,54 @@ const CartProvider =({children})=>{
     useEffect(()=>{       
         getDocs(ref)
         .then((snapShot)=>{
-            setProductos(snapShot.docs.map((doc)=>({id: doc.id, ...doc.data()})))
+            setProductos(snapShot.docs.map((doc)=>({pid: doc.id, ...doc.data()})))
         })
     }, [] )
 
-    useEffect(()=>{       
+    const getCartItems = () =>{
         getDocs(refCart)
         .then((snapShot)=>{
-            setCartItem(snapShot.docs.map((doc)=>({id: doc.id, ...doc.data()})))
+            setCartItem(snapShot.docs.map((doc)=>({...doc.data()})))
         })
-    }, [cartItem] )
+    }
+
+
     
     const openCart=()=>{
         setCartOpen(!cartOpen)
     }
 
     const isOnCart = (product) => {
-        return cartItem?.findIndex(item => item.id === product.id)
+        return cartItem?.findIndex(item => item.pid === product.pid)
     }
     
 
     const addToCart =(product)=>{
         if(isOnCart(product)===-1){
             addDoc(refCart, product)
+            .then(({id})=>{
+                const ref = doc(db, "cartItems", id)
+                updateDoc(ref, {cartId: id, count: 1})
+            })
+            .then(()=>{
+                getCartItems()
+            })
         }else{
-            alert("ya tienes el producto agregado")
+            const ref = cartItem.find(item => item.pid === product.pid)
+            const pro = doc(db, "cartItems", ref.cartId)
+            updateDoc(pro, {count: ref.count + 1}).then(()=>{
+                getCartItems()
+            })
         }       
     }
     
     const deleteItemCart = (product) =>{
-        setCartItem(cartItem.filter(item => item.id !== product.id))
+        setCartItem(cartItem.filter(item => item.pid !== product.pid))
     }
+
+    useEffect(()=>{       
+        getCartItems()
+    }, [] )
 
     return(
         <CartContext.Provider value={{productos, cartOpen, openCart, addToCart, cartItem, deleteItemCart}}>

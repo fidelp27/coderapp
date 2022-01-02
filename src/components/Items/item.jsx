@@ -19,7 +19,7 @@ const Item =({item})=>{
             </div>
         </Link>   
             <div className="card-info">
-                <p className="name"> {item.name} - {item.id} </p>
+                <p className="name"> - {item.name} - </p>
                 <p className="price"> ${item.price} </p>
             </div>
         </div>

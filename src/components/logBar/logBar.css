@@ -1,0 +1,32 @@
+.log-bar-container{
+    display: flex;
+    width: 100%;
+    height: 40px;
+    background-color: slateblue;
+    justify-content: space-between;
+    align-items: center;
+}
+.greeting-log{
+    display: flex;
+    align-items: center;
+    color: snow;
+    font-weight: bolder;
+}
+.greeting-log p{
+    margin: 0 1rem;
+    padding: .4rem;
+    font-size: .7rem;
+}
+.btn-log-container{
+    display: flex;
+}
+.btn-log-container a{
+    margin: 0 1rem;
+    color: snow;
+    padding: .4rem;    
+}
+.btn-log-container a:hover{
+    color: deeppink;
+    padding: .5rem;
+    background-color: chartreuse;
+}

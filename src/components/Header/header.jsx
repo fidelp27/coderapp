@@ -28,6 +28,7 @@ const Header =()=>{
                         <img src={item.img} alt={item.name} />
                         <p className="modal-name">{item.name} </p>
                         <p className="modal-name">${item.price} </p>
+                        <p className="modal-name">{item.count} </p>
                         <img src="https://i.imgur.com/llsKyYw.png"  className="button-garbage" alt="garbage" onClick={()=> deleteItemCart(item)} />
                       </div>
                     </div>
@@ -40,6 +41,7 @@ const Header =()=>{
           </div>) 
         : "" 
         }
+        
         
     </div>
   )  
