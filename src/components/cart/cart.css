@@ -11,10 +11,20 @@
     height: 35px;
     padding: 1rem;
     margin-right: 1rem;
+    position: relative;
     
 }
 .cart-img:hover{
     width: 40px;
     height: 40px;
     cursor: pointer;
+}
+.item-qty{
+    position: absolute;
+    top: 50px;
+    color: whitesmoke;
+    font-size: .5rem;
+    background-color: blueviolet;
+    border-radius: 1rem;
+    padding: .3rem;
 }

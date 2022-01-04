@@ -63,9 +63,7 @@ const ShopCart =()=>{
               {totalCompra > 0 ? (
                 <>
                   <p className="totalcompra">Total compra: $ {totalCompra}</p>
-                  <button className="B-vaciar" onClick={deleteAll}>
-                    Vaciar Carrito
-                  </button>
+                  
                 </>
               ) : (
                 <>

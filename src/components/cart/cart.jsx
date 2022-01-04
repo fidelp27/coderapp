@@ -1,13 +1,13 @@
 import "./cart.css"
-import { useOpenCart } from "../../context/CartProvider";
 import { Link } from "react-router-dom";
+import { useItemQty } from "../../context/CartProvider";
 
 const Cart =()=>{
-    
-    const openCart = useOpenCart();
+    const itemQty = useItemQty()    
     return(
         <div className="cart-container">
-            <Link to="/cart"> <img src="https://i.imgur.com/GreeRZm.png" className="cart-img" alt="cart-shopping" onMouseOver={()=>openCart()} onMouseOut={()=>openCart()}/></Link>
+            <Link to="/cart"> <img src="https://i.imgur.com/GreeRZm.png" className="cart-img" alt="cart-shopping"/></Link>
+            {itemQty > 0 ? <p className="item-qty">{itemQty}</p> : ""}
         </div>
             
     )
