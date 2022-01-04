@@ -1,19 +1,14 @@
 import React from "react"
 import { Link } from "react-router-dom"
-import { useAddToCart } from "../../context/CartProvider"
 import "./items.css"
 
 
 const Item =({item})=>{
-    const addToCart = useAddToCart()
 
     return(        
-        <div className="card-container">
-            <div className="icon-cart">
-                <img src="https://i.imgur.com/xRuZm4H.png" alt="icon-cart" onClick={()=>addToCart(item)}/>
-            </div>
+        <div className="card-container">            
                 
-        <Link to={`/product/${item.id}`}>    
+        <Link to={`/product/${item.pid}`}>    
             <div className="img-card">                
                 <img src={item.img} alt={item.name} />
             </div>

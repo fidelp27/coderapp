@@ -20,7 +20,7 @@ function Menu(){
           {categories.map((item)=>{
               return(
                 <div className="link" key={item.id}>
-                  <NavLink to={item.address} className={({isActive})=> (isActive ? ' activeClass' : '')}> {item.text} </NavLink>
+                  <NavLink to={item.address} className={({isActive})=> (isActive ? 'activeClass' : '')}> {item.text} </NavLink>
                 </div>            
               )
           })}

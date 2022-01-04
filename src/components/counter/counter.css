@@ -1,15 +1,58 @@
 .counter-container{
+    width: 100%;
     display: flex;
+    margin:  1rem;
     text-align: center;
-    height: 20px;
 }
-.counter-container button{
-    width: 50px;
-    height: 20px;
+.counter-container .sum-subs{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    
 }
-.counter-container p{
-    width: 100px;
-    height: 20px;
-    padding: 0;
+.counter-container .button-op{
+    width: 70px;
+    margin: 0 1rem;
+    border: none;
+    border-radius: 1rem;
+    background-color: rgba(172, 255, 47, 0.877);
+    color: hotpink;
+    padding: .6rem;
+    transition: 1s ease-out;
+    
+}
+.counter-container .button-op:hover{
+    cursor: pointer;
+    background-color: rgba(172, 255, 47, 0.577);
+}
+.counter-container .sum-subs p{
+    width: 30px;
     margin: 0;
+    padding: .5rem;
+    background-color: rgba(102, 51, 153, 0.836);
+    color: whitesmoke;
+    font-size: .9rem;
+    font-weight: bold;
+    border: none;
+    border-radius: 1rem;
+}
+.button-counter{    
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.button-counter .button-add{
+    width: 250px;         
+    background-color: rebeccapurple;
+    color: whitesmoke;
+    padding: .5rem;
+    border-radius: 1rem;
+    transition: .5s ease-out;
+}
+.button-counter .button-add:hover{
+    cursor: pointer;
+    background-color: rgba(102, 51, 153, 0.78);
+    
+
 }

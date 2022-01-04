@@ -27,7 +27,7 @@ const ItemListContainer =({saludo})=>{
         })
     
     },[catId, productos])
-
+    
     return( loading ? <div className="loader"><img src="https://i.imgur.com/QFIfMFX.gif" alt="loading" /></div> :
         <div>
             <h1> {saludo} </h1>

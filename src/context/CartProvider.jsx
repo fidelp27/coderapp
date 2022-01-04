@@ -6,12 +6,13 @@ export const CartContext = createContext()
 
 const CartProvider =({children})=>{
     const[productos, setProductos] = useState([])
-    const[cartOpen, setCartOpen]=useState(false)
     const[cartItem, setCartItem]=useState([])
+    const[totalCompra, setTotalCompra] = useState(0)
+    const[itemQty, setItemQty] = useState(0)
+    const [userEmail, setUserEmail] = useState('')
     const db = getFirestore()
     const ref = collection(db, "products")
     const refCart = collection(db, "cartItems")
-    
 
     useEffect(()=>{       
         getDocs(ref)
@@ -26,24 +27,22 @@ const CartProvider =({children})=>{
             setCartItem(snapShot.docs.map((doc)=>({...doc.data()})))
         })
     }
-
-
     
-    const openCart=()=>{
-        setCartOpen(!cartOpen)
-    }
 
     const isOnCart = (product) => {
         return cartItem?.findIndex(item => item.pid === product.pid)
     }
     
 
-    const addToCart =(product)=>{
+    const addToCart =(product, cantidad)=>{
+        let total = 0
+        setItemQty(itemQty + cantidad)
+        
         if(isOnCart(product)===-1){
             addDoc(refCart, product)
             .then(({id})=>{
                 const ref = doc(db, "cartItems", id)
-                updateDoc(ref, {cartId: id, count: 1})
+                updateDoc(ref, {cartId: id, count: cantidad})
             })
             .then(()=>{
                 getCartItems()
@@ -51,22 +50,39 @@ const CartProvider =({children})=>{
         }else{
             const ref = cartItem.find(item => item.pid === product.pid)
             const pro = doc(db, "cartItems", ref.cartId)
-            updateDoc(pro, {count: ref.count + 1}).then(()=>{
+            updateDoc(pro, {count: ref.count + cantidad}).then(()=>{
                 getCartItems()
             })
-        }       
+        }
+        cartItem.map((p) => (total += p.count * p.price))
+        total += product.price * cantidad
+        console.log(total);
+
+        setTotalCompra(total)       
     }
     
     const deleteItemCart = (product) =>{
         setCartItem(cartItem.filter(item => item.pid !== product.pid))
+        setTotalCompra(totalCompra - product.price * product.count)
+        setItemQty(itemQty - product.count)
     }
+
+    const deleteAll = () => {
+        setCartItem([])
+        setTotalCompra(0)
+        setItemQty(0)
+      }
+
+    const getUser = (form) => {
+        setUserEmail(form)
+      }  
 
     useEffect(()=>{       
         getCartItems()
     }, [] )
-    console.log(productos);
+
     return(
-        <CartContext.Provider value={{productos, cartOpen, openCart, addToCart, cartItem, deleteItemCart}}>
+        <CartContext.Provider value={{productos, addToCart, cartItem, deleteItemCart, totalCompra, deleteAll, getUser,userEmail}}>
             {children}
         </CartContext.Provider>
     )
@@ -89,6 +105,15 @@ export function useCartItem(){
 }
 export function useDeleteItemCart(){
     return useContext(CartContext).deleteItemCart
+}
+export function useTotalCompra(){
+    return useContext(CartContext).totalCompra
+}
+export function useDeleteAll(){
+    return useContext(CartContext).deleteAll
+}
+export function useGetUser(){
+    return useContext(CartContext).getUser
 }
 
 

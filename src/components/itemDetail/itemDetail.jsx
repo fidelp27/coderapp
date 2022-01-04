@@ -16,9 +16,11 @@ const ItemDetail = ({ product, onAdd, goCart }) => {
       <article className="card-detail">
         <div className="img-card-container">
           <img src={product.img} alt="img" />
+          
           <div className="info-stock">
             <p>Stock disponible: {product.stock}</p>
           </div>
+        
         </div>
         <div className="info-container">
           <div className="info-title">
@@ -34,9 +36,6 @@ const ItemDetail = ({ product, onAdd, goCart }) => {
               todos nuestros diseños. <strong>Estampa</strong> La estampa textil
               es serigráfica de alta definición para lograr un efecto
               hiperrealista.{" "}
-              <mark>No es sublimación, transfer, ni nada similar</mark>. Esos
-              procesos son de baja calidad. Las remeras <strong>Coding Clothes</strong>{" "}
-              al ser estampas textiles, son de excelente calidad
             </p>
           </div>
           <div className="info-size">
@@ -62,8 +61,9 @@ const ItemDetail = ({ product, onAdd, goCart }) => {
           </div>
           {
         
-        goCart ? <Link to="/cart">Terminar compra</Link> : <Counter stock= {product.stock} onAdd={onAdd} />
+        goCart ? <Link to="/cart" className="finish-shop">Terminar compra</Link> : <Counter stock= {product.stock} onAdd={onAdd} />
       }
+         
         </div>
       </article>
       
