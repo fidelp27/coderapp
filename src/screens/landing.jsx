@@ -1,12 +1,17 @@
 import React from "react";
 import ItemListContainer from "../components/Items/ItemListContainer";
+import "./landing.css"
 
 const Landing = () => {
   return (
-    <div>
-      <h1>Landing</h1>
-      <ItemListContainer saludo="Bienvenidos a mi Ecommerce"/>
+    <>
+    <div className="landing-container">
+      <img src="https://i.imgur.com/EqEwhp7.png" alt="logo" />
     </div>
+    <div>
+      <ItemListContainer/>
+    </div>
+    </>
   );
 };
 export default Landing;

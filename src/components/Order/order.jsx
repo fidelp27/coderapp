@@ -2,13 +2,7 @@ import React, { useContext, useEffect, useState } from 'react'
 import { Link } from 'react-router-dom'
 import { CartContext } from "../../context/CartProvider"
 import Mensaje from '../Mensaje/Mensaje'
-import {
-  getFirestore,
-  collection,
-  getDocs,
-  orderBy,
-  query,
-} from 'firebase/firestore'
+import {getFirestore,collection,getDocs,orderBy,query} from 'firebase/firestore'
 import './order.css'
 
 const Order = () => {
@@ -39,18 +33,22 @@ const Order = () => {
   }, [email])
   
   return (
-    <div className="order-box">
+    <div className="order-container">
       {order?.lenght === 0 ? (
-        <h1>Cargando...</h1>
+        <img src="https://i.imgur.com/JUfhIPA.gif" alt="img" />
       ) : (
-        <>
-          <h1>Aca dejamos tus tikets de compra</h1>
-          {order.map((ord) => (
-            <Mensaje key={ord.id} ord={ord} />
-          ))}
-        </>
+        <div className='order-data'>
+          <div className='order-title'>
+            <h2>Historial de ordenes</h2>
+          </div>
+          <div className='orders'>
+            <span>{order.map((ord) => (
+              <Mensaje key={ord.id} ord={ord} />
+            ))}</span>
+          </div>
+        </div>
       )}
-      <Link to="/">Volver a Home</Link>
+      <Link to="/">Inicio</Link>
     </div>
   )
 }

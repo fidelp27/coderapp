@@ -1,4 +1,42 @@
-.delete-button-container img{
-    width: 20px;
-    height: 20px;
+.cart-title{
+    width: 20%;
+    margin: 1rem auto;
+    text-align: center;
+    font-weight: bold;
+    background-color: black;
+    color: blueviolet;
+    padding: 1rem;
+    border-radius: 1rem;
+}
+.info-container{
+    width: 40%;
+    margin: .5rem auto;
+    display: flex;
+    justify-content: space-around;
+    background-color: black;
+    border-radius: .5rem;
+}
+.info-container p{
+    color: blueviolet;
+    padding: 0;
+    margin: 0;
+}
+.cart-empty{
+    width: 300px;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-content: center;
+    margin: 0 auto;
+}
+.cart-empty img{
+    width: 300px;
+    height: 300px;
+}
+.cart-empty a{
+    background-color: crimson;
+    color: whitesmoke;
+    padding: 1rem;
+    border-radius: 1rem;
+    
 }

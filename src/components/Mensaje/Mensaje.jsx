@@ -2,17 +2,15 @@ import React from 'react'
 import './mensaje.css'
 
 const Mensaje = ({ ord }) => {
-  console.log(ord)
 
   return (
-    <div className="mensaje-box">
+    <div className="msg-container">
       {ord.items.map((i) => (
         <ul key={i.pid}>
           <li>
-            <h3>Nombre del Producto: {i.name}</h3>
-            <h5>
-              Cantidad: {i.count} - Precio: ${i.price}
-            </h5>
+            <h3> {i.name}</h3>
+            <h4>Cantidad: {i.count}</h4>
+            <h4>Precio: ${i.price}</h4>
           </li>
         </ul>
       ))}

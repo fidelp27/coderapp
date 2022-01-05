@@ -1,6 +1,7 @@
 import React, {useState} from "react";
 import { Link } from "react-router-dom";
 import Counter from "../counter/counter";
+import "./itemDetail.css"
 
 const ItemDetail = ({ product, onAdd, goCart }) => {
   
@@ -22,11 +23,11 @@ const ItemDetail = ({ product, onAdd, goCart }) => {
           </div>
         
         </div>
-        <div className="info-container">
-          <div className="info-title">
+        <div className="info-container2">
+          <div className="info-title2">
             <p>{product.name}</p>
           </div>
-          <div className="info-price">
+          <div className="info-price2">
             <p>${product.price}</p>
           </div>
           <div className="description">

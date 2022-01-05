@@ -1,0 +1,18 @@
+.order-container{
+    text-align: center;
+    background-color: black;
+    margin: 0 auto;
+    color: blueviolet;
+
+}
+.order-data .order-title{
+    color: chartreuse;
+
+}
+.order-data .orders{
+    color: whitesmoke;
+}
+.order-container a{
+    background-color: red;
+    color: white;
+}

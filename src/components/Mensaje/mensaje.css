@@ -1,0 +1,10 @@
+.msg-container{
+    width: 40%;
+    border: 1px solid whitesmoke;
+    margin: 1rem auto;
+    text-align: center;
+}
+.msg-container ul li{
+    list-style: none;
+    text-align: center;
+}

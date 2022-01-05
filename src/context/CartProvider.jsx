@@ -1,6 +1,6 @@
 import React, {createContext, useContext, useState} from "react";
 import { useEffect } from "react/cjs/react.development";
-import {getFirestore, addDoc, getDocs, getDoc, collection, doc, updateDoc, deleteDoc, deleteField} from "firebase/firestore"
+import {getFirestore, addDoc, getDocs, collection, doc, updateDoc, deleteDoc} from "firebase/firestore"
 export const CartContext = createContext()
 
 const CartProvider =({children})=>{
@@ -21,9 +21,15 @@ const CartProvider =({children})=>{
     }, [] )
 
     const getCartItems = () =>{
+        let total = 0
+        let sumQty = 0
         getDocs(refCart)
         .then((snapShot)=>{
             setCartItem(snapShot.docs.map((doc)=>({...doc.data()})))
+            snapShot.docs.map((doc)=>(total += doc.data().count * doc.data().price))
+            setTotalCompra(total)            
+            snapShot.docs.map((doc)=>(sumQty += doc.data().count))
+           setItemQty(sumQty)         
         })
     }
     
@@ -34,9 +40,7 @@ const CartProvider =({children})=>{
     
 
     const addToCart =(product, cantidad)=>{
-        let total = 0
-        
-        
+        let total = 0        
         if(isOnCart(product)===-1){
             addDoc(refCart, product)
             .then(({id})=>{
@@ -51,17 +55,16 @@ const CartProvider =({children})=>{
             const pro = doc(db, "cartItems", ref.cartId)
             updateDoc(pro, {count: ref.count + cantidad})
             .then(()=>{                
-                total += product.price * cantidad
                 getCartItems()                
-            })
-            .then(()=> {
-                cartItem.map((p) => (setItemQty( p.count )))
-                console.log(itemQty);
-            })
+            })            
         }
-        setItemQty(itemQty + cantidad)
-        
-        console.log(total);
+        /* setItemQty(itemQty + cantidad) */
+
+
+                total += product.price * cantidad
+                /* cartItem.map((p) => (setItemQty( {...p.count} ))) */
+                        
+                console.log("total:" + total);
 
         setTotalCompra(total)       
     }

@@ -1,6 +1,6 @@
 import React, {useState} from "react";
 import "./shopCart.css"
-import { useCartItem, useDeleteAll, useDeleteItemCart, useGetUser, useTotalCompra } from "../context/CartProvider";
+import { useCartItem, useDeleteItemCart, useGetUser, useTotalCompra } from "../context/CartProvider";
 import { getFirestore, collection, addDoc } from 'firebase/firestore'
 import { Link } from "react-router-dom";
 import Order from "../components/Order/order";
@@ -9,7 +9,6 @@ const ShopCart =()=>{
     const cartItem = useCartItem()
     const deleteItemCart = useDeleteItemCart()  
     const totalCompra = useTotalCompra()
-    const deleteAll = useDeleteAll()
     const getUser = useGetUser()
 
     const [form, getForm] = useState({ nombre: '', email: '' })
@@ -18,11 +17,10 @@ const ShopCart =()=>{
     const fillForm = (e) => {
       const { name, value } = e.target
       getForm({
-        ...form,
-        [name]: value,
+        ...form, [name]: value,
       })
     }
-    const realTime = new Date()
+    const hora = new Date()
 
     const finishShop = () => {
       getUser(form)
@@ -31,12 +29,11 @@ const ShopCart =()=>{
       const newOrder = {
         buyer: form.email,
         items: cartItem,
-        date: realTime,
+        date: hora,
         total: totalCompra,
       }
       addDoc(ref, newOrder)
-      setGoTicket(true)
-      deleteAll()
+      setGoTicket(true)      
      }
     
      return (
@@ -47,55 +44,31 @@ const ShopCart =()=>{
               <h3 className="cart-title">Detalle de tu compra</h3>
               {cartItem.map((item) => (
                 <div key={item.pid} className="result">
-                  <div className="result-det">
-                    <p>
-                      {item.count} {item.name} $ {item.price}
-                    </p>
-                    <button
-                      className="B-eliminar"
-                      onClick={() => deleteItemCart(item)}
-                    >
-                      Eliminar
-                    </button>
+                  <div className="info-container">
+                    <p>Cantidad: {item.count} </p>
+                    <p>{item.name}</p>
+                    <p> $ {item.price}</p>
+                    <button className="B-eliminar" onClick={() => deleteItemCart(item)} >Eliminar</button>
                   </div>
                 </div>
               ))}
               {totalCompra > 0 ? (
-                <>
-                  <p className="totalcompra">Total compra: $ {totalCompra}</p>
-                  
-                </>
+                <div className="info-container">
+                  <p className="info-total">Total compra: $ {totalCompra}</p>                  
+                </div>
               ) : (
-                <>
-                  <p>No agregaste nada todavía</p>
-                  <Link to="/">Inicio</Link>
-                </>
+                <div className="cart-empty">
+                  <img src="https://i.gifer.com/7VE.gif" alt="" />
+                  <Link to="/">Vamos a los productos</Link>
+                </div>
               )}
-              <div />
-              <div className="formuser">
+              <div/>
+              <div className="finish-shop">
                 <form metod="POST" onSubmit={finishShop}>
-                  <p>Completá tus datos para finalizar la compra</p>
-                  <input
-                    onChange={fillForm}
-                    type="name"
-                    name="nombre"
-                    placeholder="Nombre"
-                  />
-                  <input
-                    onChange={fillForm}
-                    type="email"
-                    name="email"
-                    placeholder="Email"
-                  />
-                  <button
-                    disabled={
-                      cartItem?.length === 0 ||
-                      form.nombre === '' ||
-                      form.email === ''
-                    }
-                  >
-                    Finalizar Compra
-                  </button>
+                  <p>Completa los datos y finaliza tu compra</p>
+                  <input onChange={fillForm} type="name" name="nombre" placeholder="Nombre"/>
+                  <input onChange={fillForm} type="email" name="email" placeholder="Email" />
+                  <button disabled={cartItem?.length === 0 || form.nombre === '' || form.email === ''}>Finalizar Compra</button>
                 </form>
               </div>
             </>
